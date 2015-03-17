@@ -1,0 +1,56 @@
+
+<% include ./../Layouts/top.ejs%>
+
+    <link href="/stylesheets/sideBarComplete.css" rel="stylesheet">
+    <link href="/stylesheets/allComplains.css" rel="stylesheet">
+
+<!-- Fixed navbar -->
+<% include ./../Layouts/navBarTop.ejs%>
+
+    <div class="container">
+        <div class="row row-offcanvas row-offcanvas-right">
+            <div class="col-xs-12 col-sm-9">
+                <p class="pull-right visible-xs">
+                    <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+                    </p>
+                    <div class="jumbotron">
+                        <h1 class="formatCenter"><%=Title%></h1>
+                    </div>
+
+                    <div class="row">
+                        <% for (var aux = 0; aux < complains.length; ++aux) { %>
+                        <div id="<%=complains[aux].id%>-complain" class="col-xs-6 col-lg-4">
+                            <div id="formatListComplain" class="list-group-item">
+                                <p>Queixa criada por: <a href="/users/<%=complains[aux].user%>"><%=complains[aux].user%></a></p>
+                                <p><%=complains[aux].title.substring(0,30)%></p>
+                                <a class="btn btn-default" href="/queixasNaNet/<%=complains[aux].id%>" role="button">Ler mais</a>
+                                <span class="formatLeft"> </span>
+                                <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"><%=complains[aux].tbUp%></span>
+                                <span> - </span>
+                                <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"><%=(complains[aux].tbDw)*(-1)%></span>
+                            </div>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+                <% if (user !== undefined) { %>
+                    <div id="sidebar" class="sidebar-offcanvas">
+                        <div class="col-md-12">
+                            <h3 class="formatCenter">Dashboard</h3>
+                        <ul class="nav nav-pills nav-stacked">
+                            <% if (dash === "geral") { %>
+                                <li><a href="/users/<%=user%>"><%=user%></a></li>
+                            <% } %>
+                            <% if (dash === "user") { %>
+                                <li><a href="/queixasNaNet/complains">Geral</a></li>
+                            <% } %>
+                            <li><a href="/queixasNaNet/create">Create</a></li>
+                        </ul>
+                    </div>
+                <% } %>
+            </div>
+
+        </div>
+    </div>
+
+<% include ./../Layouts/bottom.ejs%>

@@ -1,0 +1,31 @@
+<% include ./../Layouts/top.ejs%>
+<!-- Fixed navbar -->
+
+
+<style type="text/css">
+    body {
+        padding-top: 70px;
+    }
+    #customForm {
+        padding-bottom: 290px;
+    }
+</style>
+
+
+<% include ./../Layouts/navBarTop.ejs%>
+
+
+<div class="container">
+    <div id="customForm" class="row">
+        <h2>Indique qual o seu nickname (irá ser-lhe enviado um e-mail, com a sua password):</h2>
+        <hr>
+        <form role="form" action="/users/forgotPassword" method="post">
+            <h3>Nickname: </h3>
+            <input type="text" placeholder="Nickname" name="nickname" required>
+            <hr>
+            <button type="submit" class="btn btn-primary">Clique aqui!</button>
+        </form>
+    </div>
+</div>
+
+<% include ./../Layouts/bottom.ejs%>

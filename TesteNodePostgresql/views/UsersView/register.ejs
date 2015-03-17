@@ -1,0 +1,37 @@
+<% include ./../Layouts/top.ejs%>
+<!-- Fixed navbar -->
+
+
+<style type="text/css">
+    body {
+        padding-top: 70px;
+    }
+    #customForm {
+        padding-bottom: 40px;
+    }
+</style>
+
+
+<% include ./../Layouts/navBarTop.ejs%>
+
+
+<div class="container">
+    <div id="customForm" class="row">
+        <h2>Adicione as seguintes informações para fazer se registar:</h2>
+        <hr>
+        <form role="form" action="/users/register" method="post">
+            <h3>Nickname: </h3>
+            <input type="text" placeholder="Nickname" name="nickname" required>
+            <h3>User name: </h3>
+            <input type="text" placeholder="User name" name="username" required>
+            <h3>Password: </h3>
+            <input type="password" placeholder="Password" name="pass" required>
+            <h3>E-mail: </h3>
+            <input type="text" placeholder="Email" name="email" required>
+            <hr>
+            <button type="submit" class="btn btn-primary">Registar</button>
+        </form>
+    </div>
+</div>
+
+<% include ./../Layouts/bottom.ejs%>

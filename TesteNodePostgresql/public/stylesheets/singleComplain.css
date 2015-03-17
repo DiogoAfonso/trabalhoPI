@@ -1,0 +1,13 @@
+
+body {
+    padding-top: 70px;
+}
+.formatLeft {
+    margin-left: 30px;
+}
+.formatCenter {
+    text-align:center;
+}
+#formatTop {
+    margin-top: 20px
+}

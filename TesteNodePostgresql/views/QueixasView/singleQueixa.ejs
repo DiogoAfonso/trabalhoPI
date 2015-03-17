@@ -1,0 +1,109 @@
+
+<% include ./../Layouts/top.ejs%>
+
+<link href="/stylesheets/sideBar.css" rel="stylesheet">
+    <link href="/stylesheets/singleComplain.css" rel="stylesheet">
+
+
+    <!-- Fixed navbar -->
+    <% include ./../Layouts/navBarTop.ejs%>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1><%=complain.title%></h1>
+                <p class="lead">
+                    by <a href="/users/<%=complain.user%>"><%=complain.user%></a>
+                </p>
+                <hr>
+                    <span class="glyphicon glyphicon-time"></span> - <%=complain.date%>
+                    <% if(user !== undefined) { %>
+                            <span class="formatLeft"> - </span>
+                            <span  class="glyphicon glyphicon-thumbs-up formatLeft" aria-hidden="true"><%=complain.tbUp%></span>
+                            <span> - </span>
+                            <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"><%=(complain.tbDw)*(-1)%></span>
+                            <span class="formatLeft"> - </span>
+                            <span class="formatLeft">Categoria: <a href="/queixasNaNet/category/<%=complain.categoryComplain%>"><%=complain.categoryComplain%></a></span>
+                            <span class="formatLeft"> - </span>
+                            <span class="formatLeft">Localização: <a href="/queixasNaNet/location/<%=complain.complainLocation%>"><%=complain.complainLocation%></a></span>
+                        <hr>
+                        <h5>Descrição: </h5>
+                        <p class="lead"><%=complain.descr%></p>
+                    <% } %>
+                <hr>
+                <% if(user === undefined) { %>
+                    <h2>Faça login para comentar!</h2>
+                <% } else { %>
+                    <div class="well">
+                        <h4>Leave a Comment:</h4>
+                        <form role="form" action="/queixasNaNet/<%=complain.id%>/comment" method="post">
+                            <div class="form-group">
+                                <textarea name="commentText" class="form-control" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                <% } %>
+                <hr>
+                <% if (comments !== undefined) { %>
+                    <% for (var i = 0; i < comments.length; ++i) {
+                        var aux = comments[i];
+                    %>
+                    <div class="media" id="comments">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="http://placehold.it/64x64" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading"><a href="/users/<%=comments[i].userC%>"><%=comments[i].userC%></a></h4>
+                            <h6 class="media-heading">Comentado no dia: <%=comments[i].dateComment%></h6>
+                            <p id ="<%=comments[i].idC%>-comment"><%=aux["text"]%></p>
+                        </div>
+                    </div>
+                    <% } %>
+                <% } else { %>
+                    <h3 id="comments">Não existem comentários, deixe o seu!</h3>
+                <% } %>
+            </div>
+            <% if(user !== undefined) { %>
+                <div id="sidebar" class="sidebar-offcanvas">
+                    <div class="col-md-12">
+
+                        <ul class="nav nav-pills nav-stacked formatCenter">
+                            <%if (!follow) {%>
+                                <li>
+                                    <form role="form" action="/queixasNaNet/<%=complain.id%>/follow" method="post">
+                                        <button type="submit" class="btn btn-primary">Siga-me !</button>
+                                    </form>
+                                </li>
+                            <% } else { %>
+                                <p>Já estás a seguir esta queixa!</p>
+                            <% } %>
+                            <h3>Concordas ou não!?</h3>
+                            <h4>Deixa o teu voto</h4>
+                            <% if(voted !== undefined && voted["voted"] !== 'up') { %>
+                                <li>
+                                    <form role="form" action="/queixasNaNet/<%=complain.id%>/up" method="post">
+                                        <input name="voteType" value="up" style="display: none">
+                                        <button type="submit" class="btn btn-primary">Concordo</button>
+                                    </form>
+                                </li>
+                            <% } %>
+                            <% if(voted !== undefined && voted["voted"] !== 'down') { %>
+                                <li>
+                                    <form role="form" action="/queixasNaNet/<%=complain.id%>/down" method="post">
+                                        <input name="voteType" value="down" style="display: none">
+                                        <button type="submit" class="btn btn-primary">Não Concordo</button>
+                                    </form>
+                                </li>
+                            <% } %>
+                        </ul>
+                    </div>
+                </div>
+            <% } %>
+
+        </div>
+        <!-- row -->
+    </div>
+    <!-- container -->
+
+<% include ./../Layouts/bottom.ejs%>

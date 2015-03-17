@@ -1,0 +1,31 @@
+<% include ./../Layouts/top.ejs%>
+<!-- Fixed navbar -->
+
+
+<style type="text/css">
+    body {
+        padding-top: 70px;
+    }
+    #customForm {
+        padding-bottom: 210px;
+    }
+</style>
+
+<% include ./../Layouts/navBarTop.ejs%>
+
+<div class="container">
+    <div id="customForm" class="row">
+        <h2>Login:</h2>
+        <hr>
+        <form role="form" action="/users/login" method="post">
+            <h3>Nickname: </h3>
+            <input type="text" placeholder="Nickname" name="user" required>
+            <h3>Password: </h3>
+            <input type="password" placeholder="Password" name="password" required>
+            <hr>
+            <button type="submit" class="btn btn-primary">Registar</button>
+        </form>
+    </div>
+</div>
+
+<% include ./../Layouts/bottom.ejs%>

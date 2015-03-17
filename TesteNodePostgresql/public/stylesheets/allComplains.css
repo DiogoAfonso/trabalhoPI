@@ -1,0 +1,13 @@
+
+body {
+    padding-top: 70px;
+}
+.formatLeft {
+    margin-left: 5px;
+}
+.formatCenter {
+    text-align:center;
+}
+#formatListComplain {
+    margin-bottom: 20px;
+}

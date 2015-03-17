@@ -1,0 +1,46 @@
+
+<% include ./../Layouts/top.ejs%>
+<link href="/stylesheets/createComplain.css" rel="stylesheet">
+
+<!-- Fixed navbar -->
+<% include ./../Layouts/navBarTop.ejs%>
+
+<div class="container">
+    <h2>Queixe-se aqui:</h2>
+    <hr>
+    <form action="/queixasNaNet/create" method="post">
+        <div class="form-group">
+            <div class="createBlocks">
+                <h3> <span class="colorFormat">Categoria</span>  </h3>
+                <select name="categoryTitle">
+                    <% for (var i = 0; i < categorys.length; ++i) {
+                        var aux = categorys[i];
+                    %>
+                        <option value='<%=aux["titleCategory"]%>'><%=aux["titleCategory"]%></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="createBlocks">
+                <h3> <span class="colorFormat">Localização</span>  </h3>
+                <select name="locationComplain">
+                    <% for (var i = 0; i < locations.length; ++i) {
+                        var aux = locations[i];
+                    %>
+                        <option value='<%=aux["complainLocation"]%>'><%=aux["complainLocation"]%></option>
+                    <% } %>
+                </select>
+            </div>
+            <div class="createBlocks">
+                <h3> <span class="colorFormat">Titulo</span> </h3>
+                <textarea name="complainTitle" class="form-control" maxlength="140" rows ="6"></textarea>
+            </div>
+            <div class="createBlocks">
+                <h3> <span class="colorFormat">Descrição (opcional)</span> </h3>
+                <textarea name="complainDescr" class="form-control" rows="15"></textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<% include ./../Layouts/bottom.ejs%>

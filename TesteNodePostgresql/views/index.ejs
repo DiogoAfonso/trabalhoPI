@@ -1,0 +1,92 @@
+<% include ./Layouts/top.ejs%>
+
+<link href="/stylesheets/queixinhas.css" rel="stylesheet">
+<link href="/stylesheets/home.css" rel="stylesheet">
+
+<script type="text/javascript" src="/javascripts/textSlide.js"></script>
+<script type="text/javascript" src="/javascripts//jquery.cycle.js"></script>
+<script type="text/javascript" src="/javascripts/jquery.cycle.all.js"></script>
+<script type="text/javascript" src="/javascripts/slideScript.js"></script>
+<script type="text/javascript" src="/javascripts/textSlide.js"></script>
+
+</head>
+
+<body onload="display('<%=quotes%>', '<%=offst%>')">
+
+<!-- Fixed navbar -->
+<nav class="navbar transparent navbar-fixed-top navbar-default">
+  <div class="container" id="navWidth">
+    <div class="navbar-header">
+
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"></button>
+
+      <a id="navComplains" class="navbar-brand" href="/queixasNaNet/complains" >
+        <img class="imgStyle" src="/images/vaultboy.png" />
+        <%=Title%></a>
+    </div>
+
+    <div class="navBar-information">
+      <ul>
+        <% for (var i = 0; i < inf.length; i++) { %>
+        <li id="formatRight" class="imgStyle">
+          <% if( i == 0) { %>
+           <a href="<%= target[i] %>" class="colorStyle" id="infoMargin"> <%=inf[i] %> </a>
+          <% } else { %>
+           <a href="<%= target[i] %>" class="colorStyle"> <%=inf[i] %> </a>
+          <% } %>
+
+        </li>
+        <% } %>
+        <% if (user !== undefined) { %>
+         <a href="/users/<%=user%>" class="colorStyle"> <%=user %> </a>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div id="slideshow">
+  <% for (var aux = 0; aux < imgs.length; ++aux) { %>
+   <img src="<%=imgs[aux]%>" class="bgM" />
+  <% } %>
+</div>
+
+<div class="boas_vindas-content">
+
+  <div class="mensagem_boas_vindas">
+    <h1>Bem-vindo ao <%=Title%>!</h1>
+    <p> O <%=Title%> é uma página destinada a fazeres as tuas queixas, seguir outras e
+      até mesmo comentar, clica em 'About us' para conheceres melhor o site!</p>
+  </div>
+
+  <div class="queixinhasSlide" id="quotation"> </div>
+
+</div>
+
+<% if (user === undefined) { %>
+  <form class="UserBox-content" action="/users/login" method="post">
+    <input type="text" placeholder="username" name="user"><br>
+    <input type="password" placeholder="password" name="password"><br>
+    <button type="submit"> Login </button>
+    <footer>
+      <p>
+        <span class="info">?</span><a class="colorStyle" href="/users/forgotPassword"> Forgot Password</a>
+        <span class="infoRegister">!</span> <a class="colorStyle" href="/users/register"> Register </a>
+      </p>
+    </footer>
+  </form>
+<% } %>
+
+<footer class="footer footer-content">
+  <ul id="footerIdContent">
+    <li class="listStyle">
+      <a href="/about">
+        <strong class="colorStyle">About Us</strong>
+      </a>
+    </li>
+  </ul>
+</footer>
+
+</body>
+</html>

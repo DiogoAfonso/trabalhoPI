@@ -1,0 +1,31 @@
+
+#navWidth {
+    width:100%
+}
+
+#navComplains {
+    padding-top:0%;
+    margin-left:250px;
+}
+
+.colorStyle {
+    color:#a18d6c;
+}
+
+#infoMargin {
+    margin-left:auto;
+}
+
+.listStyle {
+    list-style-type:none;
+}
+
+#formatRight {
+    margin-right:30px;
+}
+
+.imgStyle {
+    display:inline;
+}
+
+

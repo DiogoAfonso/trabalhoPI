@@ -1,0 +1,27 @@
+<% include ./../Layouts/top.ejs%>
+<!-- Fixed navbar -->
+
+
+<style type="text/css">
+    body {
+        padding-top: 70px;
+    }
+    #customForm {
+        padding-bottom: 460px;
+    }
+</style>
+
+
+<% include ./../Layouts/navBarTop.ejs%>
+
+
+<div class="container">
+    <div id="customForm" class="row">
+        <p>Deseja Fazer Logout?</p>
+        <form role="form" action="/users/logout" method="post">
+            <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
+    </div>
+</div>
+
+<% include ./../Layouts/bottom.ejs%>
